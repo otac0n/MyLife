@@ -1,0 +1,10 @@
+bin/
+Bin/
+obj/
+Obj/
+
+*.Cache
+*.cache
+*.suo
+*.user
+*.docstates
