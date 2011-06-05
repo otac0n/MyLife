@@ -64,6 +64,9 @@
     <Compile Include="App.xaml.init.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AreaLoader.cs" />
+    <Compile Include="Areas\Vehicles\VehiclesAreaRegistry.cs" />
+    <Compile Include="IAreaRegistry.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

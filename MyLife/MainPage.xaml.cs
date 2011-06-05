@@ -24,6 +24,28 @@ namespace MyLife
         public MainPage()
         {
             InitializeComponent();
+
+            this.DiscoverAreas();
+        }
+
+        private void DiscoverAreas()
+        {
+            var registries = AreaLoader.GetAreaRegistries();
+
+            foreach (var registry in registries)
+            {
+                var text = new TextBlock
+                {
+                    Text = registry.Name,
+                };
+                this.AreasPanel.Children.Add(text);
+
+                var item = new PanoramaItem
+                {
+                    Header = registry.Name,
+                };
+                this.AreasPanorama.Items.Add(item);
+            }
         }
     }
 }
