@@ -16,7 +16,8 @@
     SupportedOrientations="Portrait"
     Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
-    DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ViewModel}">
+    DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ViewModel}"
+    Style="{StaticResource PageStyle}">
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Panorama x:Name="AreasPanorama" Title="my life" ItemsSource="{Binding Areas}">
             <controls:Panorama.TitleTemplate>
