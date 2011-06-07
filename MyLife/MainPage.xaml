@@ -18,6 +18,11 @@
     shell:SystemTray.IsVisible="True">
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Panorama x:Name="AreasPanorama" Title="my life">
+            <controls:Panorama.TitleTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" FontSize="100" Margin="0,50,0,0" />
+                </DataTemplate>
+            </controls:Panorama.TitleTemplate>
             <controls:PanoramaItem Header="Areas">
                 <ScrollViewer>
                     <StackPanel x:Name="AreasPanel">
