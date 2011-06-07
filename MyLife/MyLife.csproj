@@ -65,6 +65,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AreaLoader.cs" />
+    <Compile Include="Areas\Vehicles\Fuel.xaml.cs">
+      <DependentUpon>Fuel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Vehicles\VehiclesAreaRegistry.cs" />
     <Compile Include="IAreaRegistry.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -78,6 +81,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Areas\Vehicles\Fuel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
