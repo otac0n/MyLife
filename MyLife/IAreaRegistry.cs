@@ -12,6 +12,6 @@ namespace MyLife
     {
         string Name { get; }
 
-        IList<PageRegistration> GetPages();
+        IList<PageRegistration> Pages { get; }
     }
 }

@@ -17,14 +17,16 @@ namespace MyLife.Areas.Transportation
             new PageRegistration("Maintenance", "/Areas/Vehicles/Maintenance.xaml"),
         };
 
+        public VehiclesAreaRegistry()
+        {
+            this.Pages = pages.ToList().AsReadOnly();
+        }
+
         public string Name
         {
             get { return "Vehicles"; }
         }
 
-        public IList<PageRegistration> GetPages()
-        {
-            return (PageRegistration[])pages.Clone();
-        }
+        public IList<PageRegistration> Pages { get; private set; }
     }
 }
