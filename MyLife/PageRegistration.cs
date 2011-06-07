@@ -58,5 +58,15 @@ namespace MyLife
         {
             get { return this.name; }
         }
+
+        public Uri PageUri
+        {
+            get { return this.pageUri; }
+        }
+
+        public Uri ImageUri
+        {
+            get { return this.pageUri; }
+        }
     }
 }
