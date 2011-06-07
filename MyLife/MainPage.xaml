@@ -15,20 +15,38 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"
     Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ViewModel}">
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Panorama x:Name="AreasPanorama" Title="my life">
+        <controls:Panorama x:Name="AreasPanorama" Title="my life" ItemsSource="{Binding Areas}">
             <controls:Panorama.TitleTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" FontSize="100" Margin="0,50,0,0" />
                 </DataTemplate>
             </controls:Panorama.TitleTemplate>
-            <controls:PanoramaItem Header="Areas">
-                <ScrollViewer>
-                    <StackPanel x:Name="AreasPanel">
-                    </StackPanel>
-                </ScrollViewer>
-            </controls:PanoramaItem>
+            <controls:Panorama.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" FontSize="50" />
+                </DataTemplate>
+            </controls:Panorama.HeaderTemplate>
+            <controls:Panorama.ItemTemplate>
+                <DataTemplate>
+                    <ItemsControl ItemsSource="{Binding Pages}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid MouseLeftButtonDown="NavigateToTag" Tag="{Binding PageUri}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="55" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0" Source="{Binding ImageUri}" Height="50" MaxWidth="50" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}" FontSize="25" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </DataTemplate>
+            </controls:Panorama.ItemTemplate>
         </controls:Panorama>
     </Grid>
 </phone:PhoneApplicationPage>

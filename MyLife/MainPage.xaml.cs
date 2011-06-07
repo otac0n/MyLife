@@ -7,6 +7,7 @@ namespace MyLife
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Net;
     using System.Reflection;
@@ -23,10 +24,14 @@ namespace MyLife
     {
         public MainPage()
         {
-            InitializeComponent();
+            this.ViewModel = new MainPageViewModel();
+
+            this.InitializeComponent();
 
             this.DiscoverAreas();
         }
+
+        public MainPageViewModel ViewModel { get; private set; }
 
         private void DiscoverAreas()
         {
@@ -34,18 +39,24 @@ namespace MyLife
 
             foreach (var registry in registries)
             {
-                var text = new TextBlock
-                {
-                    Text = registry.Name,
-                };
-                this.AreasPanel.Children.Add(text);
-
-                var item = new PanoramaItem
-                {
-                    Header = registry.Name,
-                };
-                this.AreasPanorama.Items.Add(item);
+                this.ViewModel.Areas.Add(registry);
             }
+        }
+
+        public class MainPageViewModel
+        {
+            public MainPageViewModel()
+            {
+                this.Areas = new ObservableCollection<IAreaRegistry>();
+            }
+
+            public ObservableCollection<IAreaRegistry> Areas { get; private set; }
+        }
+
+        private void NavigateToTag(object sender, MouseButtonEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            App.Current.RootFrame.Navigate(element.Tag as Uri);
         }
     }
 }
