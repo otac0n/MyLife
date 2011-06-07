@@ -52,6 +52,11 @@ namespace MyLife
             this.InitializePhoneApplication();
         }
 
+        public static new App Current
+        {
+            get { return (App)Application.Current; }
+        }
+
         /// <summary>
         /// Gets the root frame of the Phone Application.
         /// </summary>
