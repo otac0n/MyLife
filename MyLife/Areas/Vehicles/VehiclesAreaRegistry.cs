@@ -6,12 +6,25 @@
 namespace MyLife.Areas.Transportation
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class VehiclesAreaRegistry : IAreaRegistry
     {
+        private static PageRegistration[] pages = new[]
+        {
+            new PageRegistration("Fuel", "/Areas/Vehicles/Fuel.xaml"),
+            new PageRegistration("Maintenance", "/Areas/Vehicles/Maintenance.xaml"),
+        };
+
         public string Name
         {
             get { return "Vehicles"; }
+        }
+
+        public IList<PageRegistration> GetPages()
+        {
+            return (PageRegistration[])pages.Clone();
         }
     }
 }

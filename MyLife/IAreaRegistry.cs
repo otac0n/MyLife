@@ -6,9 +6,12 @@
 namespace MyLife
 {
     using System;
+    using System.Collections.Generic;
 
     public interface IAreaRegistry
     {
         string Name { get; }
+
+        IList<PageRegistration> GetPages();
     }
 }
