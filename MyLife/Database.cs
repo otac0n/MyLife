@@ -6,7 +6,10 @@
 namespace MyLife
 {
     using System;
+    using System.IO;
+    using System.IO.IsolatedStorage;
     using System.Net;
+    using System.Runtime.Serialization;
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Documents;
@@ -18,17 +21,46 @@ namespace MyLife
 
     public class Database
     {
+        private static readonly DataContractSerializer serializer = new DataContractSerializer(typeof(Database));
+
         private Database()
         {
         }
 
-        public static void Save()
+        public static void Save(Database db)
         {
+            using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (var file = storage.OpenFile("Database.xml", FileMode.Create))
+                {
+                    serializer.WriteObject(file, db);
+                }
+            }
         }
 
         public static Database Load()
         {
-            return new Database();
+            using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                IsolatedStorageFileStream file = null;
+                try
+                {
+                    file = storage.OpenFile("Database.xml", FileMode.Open);
+                    return (Database)serializer.ReadObject(file);
+                }
+                catch (FileNotFoundException)
+                {
+                    return new Database();
+                }
+                finally
+                {
+                    if (file != null)
+                    {
+                        file.Dispose();
+                        file = null;
+                    }
+                }
+            }
         }
     }
 }
