@@ -13,6 +13,7 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True"
+    DataContext="{Binding RelativeSource={RelativeSource Self}, Path=Database}"
     Style="{StaticResource PageStyle}">
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Panorama x:Name="FuelPanorama" Title="Fuel" FontSize="20">
@@ -23,8 +24,13 @@
             </controls:Panorama.TitleTemplate>
             <controls:PanoramaItem Header="Entries">
                 <ScrollViewer>
-                    <StackPanel x:Name="EntriesPanel">
-                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding FuelEntries}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Date}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </ScrollViewer>
             </controls:PanoramaItem>
         </controls:Panorama>
