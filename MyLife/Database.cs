@@ -12,6 +12,8 @@ namespace MyLife
 
     public partial class Database
     {
+        private const string DatabaseFileName = "Database.v1.xml";
+
         private static readonly DataContractSerializer serializer = new DataContractSerializer(typeof(Database));
 
         public Database()
@@ -22,7 +24,7 @@ namespace MyLife
         {
             using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (var file = storage.OpenFile("Database.xml", FileMode.Create))
+                using (var file = storage.OpenFile(DatabaseFileName, FileMode.Create))
                 {
                     serializer.WriteObject(file, db);
                 }
@@ -33,13 +35,13 @@ namespace MyLife
         {
             using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                if (!storage.FileExists("Database.xml"))
+                if (!storage.FileExists(DatabaseFileName))
                 {
                     return new Database();
                 }
 
 #if DEBUG
-                using (var file = storage.OpenFile("Database.xml", FileMode.Open))
+                using (var file = storage.OpenFile(DatabaseFileName, FileMode.Open))
                 {
                     using (var reader = new StreamReader(file))
                     {
@@ -48,7 +50,7 @@ namespace MyLife
                 }
 #endif
 
-                using (var file = storage.OpenFile("Database.xml", FileMode.Open))
+                using (var file = storage.OpenFile(DatabaseFileName, FileMode.Open))
                 {
                     return (Database)serializer.ReadObject(file);
                 }
