@@ -12,7 +12,7 @@ namespace MyLife
     {
         private List<FuelEntry> entries = new List<FuelEntry>();
 
-        public List<FuelEntry> Entries
+        public List<FuelEntry> FuelEntries
         {
             get
             {
@@ -32,6 +32,8 @@ namespace MyLife
             public decimal Cost { get; set; }
 
             public decimal Gallons { get; set; }
+
+            public decimal Odometer { get; set; }
         }
     }
 }
