@@ -24,5 +24,10 @@ namespace MyLife.Areas.Vehicles
         {
             InitializeComponent();
         }
+
+        public Database Database
+        {
+            get { return App.Current.DB; }
+        }
     }
 }
