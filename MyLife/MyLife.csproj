@@ -67,6 +67,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AreaLoader.cs" />
+    <Compile Include="Areas\Vehicles\VehicleDatabase.cs" />
     <Compile Include="Areas\Vehicles\Fuel.xaml.cs">
       <DependentUpon>Fuel.xaml</DependentUpon>
     </Compile>
