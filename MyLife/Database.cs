@@ -8,22 +8,13 @@ namespace MyLife
     using System;
     using System.IO;
     using System.IO.IsolatedStorage;
-    using System.Net;
     using System.Runtime.Serialization;
-    using System.Windows;
-    using System.Windows.Controls;
-    using System.Windows.Documents;
-    using System.Windows.Ink;
-    using System.Windows.Input;
-    using System.Windows.Media;
-    using System.Windows.Media.Animation;
-    using System.Windows.Shapes;
 
-    public class Database
+    public partial class Database
     {
         private static readonly DataContractSerializer serializer = new DataContractSerializer(typeof(Database));
 
-        private Database()
+        public Database()
         {
         }
 
@@ -42,23 +33,14 @@ namespace MyLife
         {
             using (var storage = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                IsolatedStorageFileStream file = null;
-                try
-                {
-                    file = storage.OpenFile("Database.xml", FileMode.Open);
-                    return (Database)serializer.ReadObject(file);
-                }
-                catch (FileNotFoundException)
+                if (!storage.FileExists("Database.xml"))
                 {
                     return new Database();
                 }
-                finally
+
+                using (var file = storage.OpenFile("Database.xml", FileMode.Open))
                 {
-                    if (file != null)
-                    {
-                        file.Dispose();
-                        file = null;
-                    }
+                    return (Database)serializer.ReadObject(file);
                 }
             }
         }
