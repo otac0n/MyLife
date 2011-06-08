@@ -28,7 +28,9 @@ namespace MyLife
         public class FuelEntry
         {
             public DateTime Date { get; set; }
+
             public decimal Cost { get; set; }
+
             public decimal Gallons { get; set; }
         }
     }
