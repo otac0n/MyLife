@@ -50,12 +50,16 @@ namespace MyLife
 
             // Phone-specific initialization
             this.InitializePhoneApplication();
+
+            this.DB = Database.Load();
         }
 
         public static new App Current
         {
             get { return (App)Application.Current; }
         }
+
+        public Database DB { get; private set; }
 
         /// <summary>
         /// Gets the root frame of the Phone Application.
