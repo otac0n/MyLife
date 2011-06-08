@@ -10,9 +10,9 @@ namespace MyLife
 
     public partial class Database
     {
-        private List<FuelEntry> entries = new List<FuelEntry>();
+        private DataList<FuelEntry> entries = new DataList<FuelEntry>();
 
-        public List<FuelEntry> FuelEntries
+        public DataList<FuelEntry> FuelEntries
         {
             get
             {
