@@ -38,6 +38,16 @@ namespace MyLife
                     return new Database();
                 }
 
+#if DEBUG
+                using (var file = storage.OpenFile("Database.xml", FileMode.Open))
+                {
+                    using (var reader = new StreamReader(file))
+                    {
+                        System.Diagnostics.Debug.WriteLine(reader.ReadToEnd());
+                    }
+                }
+#endif
+
                 using (var file = storage.OpenFile("Database.xml", FileMode.Open))
                 {
                     return (Database)serializer.ReadObject(file);
