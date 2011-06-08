@@ -43,6 +43,12 @@ namespace MyLife
             }
         }
 
+        private void NavigateToTag(object sender, MouseButtonEventArgs e)
+        {
+            var element = (FrameworkElement)sender;
+            App.Current.RootFrame.Navigate(element.Tag as Uri);
+        }
+
         public class MainPageViewModel
         {
             public MainPageViewModel()
@@ -51,12 +57,6 @@ namespace MyLife
             }
 
             public ObservableCollection<IAreaRegistry> Areas { get; private set; }
-        }
-
-        private void NavigateToTag(object sender, MouseButtonEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
-            App.Current.RootFrame.Navigate(element.Tag as Uri);
         }
     }
 }
