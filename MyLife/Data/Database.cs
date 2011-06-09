@@ -3,7 +3,7 @@
 // </copyright>
 // <author>John Gietzen</author>
 
-namespace MyLife
+namespace MyLife.Data
 {
     using System;
     using System.IO;

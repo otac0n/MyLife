@@ -1,4 +1,4 @@
-﻿namespace MyLife
+﻿namespace MyLife.Data
 {
     using System;
     using System.Collections;

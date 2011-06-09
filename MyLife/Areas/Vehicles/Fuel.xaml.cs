@@ -17,6 +17,7 @@ namespace MyLife.Areas.Vehicles
     using System.Windows.Media.Animation;
     using System.Windows.Shapes;
     using Microsoft.Phone.Controls;
+    using MyLife.Data;
 
     public partial class Fuel : PhoneApplicationPage
     {

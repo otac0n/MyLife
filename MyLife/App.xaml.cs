@@ -20,6 +20,7 @@ namespace MyLife
     using System.Windows.Shapes;
     using Microsoft.Phone.Controls;
     using Microsoft.Phone.Shell;
+    using MyLife.Data;
 
     public partial class App : Application
     {
