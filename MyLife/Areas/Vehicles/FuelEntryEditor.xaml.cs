@@ -43,6 +43,17 @@
 
         private void Save_Click(object sender, EventArgs e)
         {
+            var newEntry = new Database.FuelEntry
+            {
+                Date = this.entry.Date,
+                Odometer = this.entry.Odometer,
+                Gallons = this.entry.Gallons,
+                Cost = this.entry.Cost,
+            };
+
+            App.Current.DB.FuelEntries.Add(newEntry);
+            Database.Save(App.Current.DB);
+
             NavigationService.GoBack();
         }
 

@@ -28,13 +28,13 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Fuel Entry" FontSize="50" />
         <TextBlock Grid.Row="1" Text="Date" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-        <TextBox Grid.Row="2" InputScope="Date" Text="{Binding Date}" />
+        <TextBox Grid.Row="2" InputScope="Date" Text="{Binding Date, Mode=TwoWay}" />
         <TextBlock Grid.Row="3" Text="Odometer" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-        <TextBox Grid.Row="4" InputScope="Number" Text="{Binding Odometer}" />
+        <TextBox Grid.Row="4" InputScope="Number" Text="{Binding Odometer, Mode=TwoWay}" />
         <TextBlock Grid.Row="5" Text="Gallons" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-        <TextBox Grid.Row="6" InputScope="Number" Text="{Binding Gallons}" />
+        <TextBox Grid.Row="6" InputScope="Number" Text="{Binding Gallons, Mode=TwoWay}" />
         <TextBlock Grid.Row="7" Text="Total Cost" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-        <TextBox Grid.Row="8" InputScope="CurrencyAmount" Text="{Binding Cost}" />
+        <TextBox Grid.Row="8" InputScope="CurrencyAmount" Text="{Binding Cost, Mode=TwoWay}" />
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
