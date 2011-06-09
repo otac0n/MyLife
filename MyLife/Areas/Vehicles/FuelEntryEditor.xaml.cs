@@ -1,4 +1,9 @@
-﻿namespace MyLife.Areas.Vehicles
+﻿// <copyright file="VehicleDatabase.cs" company="(none)">
+//  Copyright © 2010 John Gietzen. All rights reserved.
+// </copyright>
+// <author>John Gietzen</author>
+
+namespace MyLife.Areas.Vehicles
 {
     using System;
     using System.Collections.Generic;
