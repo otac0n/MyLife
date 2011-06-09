@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="Areas\Vehicles\VehiclesAreaRegistry.cs" />
     <Compile Include="Database.cs" />
+    <Compile Include="DataList`1.cs" />
     <Compile Include="IAreaRegistry.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
