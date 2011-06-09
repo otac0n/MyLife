@@ -1,4 +1,4 @@
-﻿// <copyright file="VehicleDatabase.cs" company="(none)">
+﻿// <copyright file="FuelEntryEditor.xaml.cs" company="(none)">
 //  Copyright © 2010 John Gietzen. All rights reserved.
 // </copyright>
 // <author>John Gietzen</author>
