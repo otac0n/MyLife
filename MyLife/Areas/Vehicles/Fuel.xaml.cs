@@ -30,5 +30,10 @@ namespace MyLife.Areas.Vehicles
         {
             get { return App.Current.DB; }
         }
+
+        private void AddEntryButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Areas/Vehicles/FuelEntryEditor.xaml", UriKind.Relative));
+        }
     }
 }

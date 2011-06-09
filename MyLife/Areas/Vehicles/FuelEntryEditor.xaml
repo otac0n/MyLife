@@ -1,0 +1,44 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="MyLife.Areas.Vehicles.FuelEntryEditor"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True"
+    DataContext="{Binding RelativeSource={RelativeSource Self}, Path=Entry}"
+    Style="{StaticResource PageStyle}">
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="72" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="72" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="72" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="72" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Text="Date" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+        <TextBox Grid.Row="2" InputScope="Date" Text="{Binding Date}" />
+        <TextBlock Grid.Row="3" Text="Odometer" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+        <TextBox Grid.Row="4" InputScope="Number" Text="{Binding Odometer}" />
+        <TextBlock Grid.Row="5" Text="Gallons" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+        <TextBox Grid.Row="6" InputScope="Number" Text="{Binding Gallons}" />
+        <TextBlock Grid.Row="7" Text="Total Cost" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+        <TextBox Grid.Row="8" InputScope="CurrencyAmount" Text="{Binding Cost}" />
+    </Grid>
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/Delete.png" Text="Delete"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/Save.png" Text="Save"/>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+</phone:PhoneApplicationPage>

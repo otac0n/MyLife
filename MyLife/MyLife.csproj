@@ -67,6 +67,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AreaLoader.cs" />
+    <Compile Include="Areas\Vehicles\FuelEntryEditor.xaml.cs">
+      <DependentUpon>FuelEntryEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Areas\Vehicles\VehicleDatabase.cs" />
     <Compile Include="Areas\Vehicles\Fuel.xaml.cs">
       <DependentUpon>Fuel.xaml</DependentUpon>
@@ -93,6 +96,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Areas\Vehicles\FuelEntryEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Areas\Vehicles\Maintenance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,7 +120,9 @@
     <Content Include="Background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\Delete.png" />
     <Content Include="Images\New.png" />
+    <Content Include="Images\Save.png" />
     <Content Include="SplashScreenImage.jpg" />
   </ItemGroup>
   <ItemGroup />
