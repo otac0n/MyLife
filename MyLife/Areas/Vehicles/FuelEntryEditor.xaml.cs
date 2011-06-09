@@ -35,5 +35,15 @@
                 this.entry = value;
             }
         }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
