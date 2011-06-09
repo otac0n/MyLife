@@ -22,7 +22,10 @@
                     <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" FontSize="100" Margin="0,50,0,0" />
                 </DataTemplate>
             </controls:Panorama.TitleTemplate>
-            <controls:PanoramaItem Header="Entries">
+            <controls:PanoramaItem>
+                <controls:PanoramaItem.Header>
+                    <TextBlock Text="Entries" FontSize="50" />
+                </controls:PanoramaItem.Header>
                 <ScrollViewer>
                     <ItemsControl ItemsSource="{Binding FuelEntries}">
                         <ItemsControl.ItemTemplate>
