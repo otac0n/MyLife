@@ -15,21 +15,21 @@
     shell:SystemTray.IsVisible="True"
     Style="{StaticResource PageStyle}">
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Panorama x:Name="MaintenancePanorama" Title="Maintenance" FontSize="20">
-            <controls:Panorama.TitleTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" FontSize="100" Margin="0,50,0,0" />
-                </DataTemplate>
-            </controls:Panorama.TitleTemplate>
-            <controls:PanoramaItem>
-                <controls:PanoramaItem.Header>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Maintenance" FontSize="100" />
+        <controls:Pivot Grid.Row="1" x:Name="MaintenancePivot">
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
                     <TextBlock Text="Entries" FontSize="50" />
-                </controls:PanoramaItem.Header>
+                </controls:PivotItem.Header>
                 <ScrollViewer>
                     <StackPanel x:Name="EntriesPanel">
                     </StackPanel>
                 </ScrollViewer>
-            </controls:PanoramaItem>
-        </controls:Panorama>
+            </controls:PivotItem>
+        </controls:Pivot>
     </Grid>
 </phone:PhoneApplicationPage>

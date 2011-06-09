@@ -19,18 +19,18 @@
     DataContext="{Binding RelativeSource={RelativeSource Self}, Path=ViewModel}"
     Style="{StaticResource PageStyle}">
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Panorama x:Name="AreasPanorama" Title="my life" ItemsSource="{Binding Areas}">
-            <controls:Panorama.TitleTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" FontSize="100" Margin="0,50,0,0" />
-                </DataTemplate>
-            </controls:Panorama.TitleTemplate>
-            <controls:Panorama.HeaderTemplate>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="my life" FontSize="100" />
+        <controls:Pivot Grid.Row="1" x:Name="AreasPivot" ItemsSource="{Binding Areas}">
+            <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}" FontSize="50" />
                 </DataTemplate>
-            </controls:Panorama.HeaderTemplate>
-            <controls:Panorama.ItemTemplate>
+            </controls:Pivot.HeaderTemplate>
+            <controls:Pivot.ItemTemplate>
                 <DataTemplate>
                     <ItemsControl ItemsSource="{Binding Pages}">
                         <ItemsControl.ItemTemplate>
@@ -47,7 +47,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </DataTemplate>
-            </controls:Panorama.ItemTemplate>
-        </controls:Panorama>
+            </controls:Pivot.ItemTemplate>
+        </controls:Pivot>
     </Grid>
 </phone:PhoneApplicationPage>

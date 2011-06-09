@@ -20,16 +20,16 @@
         <convert:FormattingConverter x:Key="Format" />
     </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <controls:Panorama x:Name="FuelPanorama" Title="Fuel" FontSize="20">
-            <controls:Panorama.TitleTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}" FontSize="100" Margin="0,50,0,0" />
-                </DataTemplate>
-            </controls:Panorama.TitleTemplate>
-            <controls:PanoramaItem>
-                <controls:PanoramaItem.Header>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Fuel" FontSize="100" />
+        <controls:Pivot Grid.Row="1" x:Name="FuelPivot">
+            <controls:PivotItem>
+                <controls:PivotItem.Header>
                     <TextBlock Text="Entries" FontSize="50" />
-                </controls:PanoramaItem.Header>
+                </controls:PivotItem.Header>
                 <ScrollViewer>
                     <ItemsControl ItemsSource="{Binding FuelEntries}">
                         <ItemsControl.ItemTemplate>
@@ -50,8 +50,8 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
-            </controls:PanoramaItem>
-        </controls:Panorama>
+            </controls:PivotItem>
+        </controls:Pivot>
     </Grid>
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
