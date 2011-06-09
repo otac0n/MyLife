@@ -15,6 +15,7 @@ namespace MyLife.Areas.Vehicles
     using System.Windows.Input;
     using System.Windows.Media;
     using System.Windows.Media.Animation;
+    using System.Windows.Navigation;
     using System.Windows.Shapes;
     using Microsoft.Phone.Controls;
     using MyLife.Data;
@@ -41,6 +42,40 @@ namespace MyLife.Areas.Vehicles
             }
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var index = GetItemIndex();
+            if (index.HasValue)
+            {
+                var oldEntry = App.Current.DB.FuelEntries[index.Value];
+                this.entry.Date = oldEntry.Date;
+                this.entry.Odometer = oldEntry.Odometer;
+                this.entry.Gallons = oldEntry.Gallons;
+                this.entry.Cost = oldEntry.Cost;
+            }
+            else
+            {
+                this.entry.Date = DateTime.Today;
+            }
+        }
+
+        private int? GetItemIndex()
+        {
+            string indexStr;
+            if (!NavigationContext.QueryString.TryGetValue("itemIndex", out indexStr))
+            {
+                return null;
+            }
+
+            int index;
+            if (!int.TryParse(indexStr, out index))
+            {
+                return null;
+            }
+
+            return index;
+        }
+
         private void Cancel_Click(object sender, EventArgs e)
         {
             NavigationService.GoBack();
@@ -48,15 +83,27 @@ namespace MyLife.Areas.Vehicles
 
         private void Save_Click(object sender, EventArgs e)
         {
-            var newEntry = new Database.FuelEntry
+            var index = GetItemIndex();
+            if (index.HasValue)
             {
-                Date = this.entry.Date,
-                Odometer = this.entry.Odometer,
-                Gallons = this.entry.Gallons,
-                Cost = this.entry.Cost,
-            };
+                var oldEntry = App.Current.DB.FuelEntries[index.Value];
+                oldEntry.Date = this.entry.Date;
+                oldEntry.Odometer = this.entry.Odometer;
+                oldEntry.Gallons = this.entry.Gallons;
+                oldEntry.Cost = this.entry.Cost;
+            }
+            else
+            {
+                var newEntry = new Database.FuelEntry
+                {
+                    Date = this.entry.Date,
+                    Odometer = this.entry.Odometer,
+                    Gallons = this.entry.Gallons,
+                    Cost = this.entry.Cost,
+                };
+                App.Current.DB.FuelEntries.Add(newEntry);
+            }
 
-            App.Current.DB.FuelEntries.Add(newEntry);
             Database.Save(App.Current.DB);
 
             NavigationService.GoBack();
