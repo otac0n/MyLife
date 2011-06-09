@@ -1,4 +1,9 @@
-﻿namespace MyLife.Data
+﻿// <copyright file="DataList`1.cs" company="(none)">
+//  Copyright © 2010 John Gietzen. All rights reserved.
+// </copyright>
+// <author>John Gietzen</author>
+
+namespace MyLife.Data
 {
     using System;
     using System.Collections;
@@ -8,6 +13,34 @@
     public class DataList<T> : IList<T>, INotifyCollectionChanged
     {
         private readonly List<T> backingList = new List<T>();
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        public int Count
+        {
+            get { return this.backingList.Count; }
+        }
+
+        public bool IsReadOnly
+        {
+            get { return false; }
+        }
+
+        public T this[int index]
+        {
+            get
+            {
+                return this.backingList[index];
+            }
+
+            set
+            {
+                var oldItem = this.backingList[index];
+                this.backingList[index] = value;
+                this.RaiseCollectionChanged(
+                    () => new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, oldItem, index));
+            }
+        }
 
         public int IndexOf(T item)
         {
@@ -27,21 +60,6 @@
             this.backingList.RemoveAt(index);
             this.RaiseCollectionChanged(
                 () => new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, oldItem, index));
-        }
-
-        public T this[int index]
-        {
-            get
-            {
-                return this.backingList[index];
-            }
-            set
-            {
-                var oldItem = this.backingList[index];
-                this.backingList[index] = value;
-                this.RaiseCollectionChanged(
-                    () => new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, oldItem, index));
-            }
         }
 
         public void Add(T item)
@@ -69,16 +87,6 @@
             this.backingList.CopyTo(array, arrayIndex);
         }
 
-        public int Count
-        {
-            get { return this.backingList.Count; }
-        }
-
-        public bool IsReadOnly
-        {
-            get { return false; }
-        }
-
         public bool Remove(T item)
         {
             var index = this.backingList.IndexOf(item);
@@ -100,8 +108,6 @@
         {
             return ((IEnumerable)this.backingList).GetEnumerator();
         }
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         private void RaiseCollectionChanged(Func<NotifyCollectionChangedEventArgs> e)
         {
