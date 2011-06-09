@@ -5,6 +5,7 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:convert="clr-namespace:MyLife.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -15,6 +16,9 @@
     shell:SystemTray.IsVisible="True"
     DataContext="{Binding RelativeSource={RelativeSource Self}, Path=Database}"
     Style="{StaticResource PageStyle}">
+    <phone:PhoneApplicationPage.Resources>
+        <convert:FormattingConverter x:Key="Format" />
+    </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <controls:Panorama x:Name="FuelPanorama" Title="Fuel" FontSize="20">
             <controls:Panorama.TitleTemplate>
@@ -30,7 +34,18 @@
                     <ItemsControl ItemsSource="{Binding FuelEntries}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Date}" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition Width="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Date, Converter={StaticResource Format}, ConverterParameter='\{0:d\}'}" />
+                                    <TextBlock Grid.Column="1" Text="{Binding Odometer, Converter={StaticResource Format}, ConverterParameter='\{0\} mi'}" />
+                                    <TextBlock Grid.Column="2" Text="{Binding Gallons, Converter={StaticResource Format}, ConverterParameter='\{0\} gal'}" />
+                                    <TextBlock Grid.Column="3" Text="{Binding Cost, Converter={StaticResource Format}, ConverterParameter='\{0:c\}'}" />
+                                </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

@@ -78,6 +78,7 @@
       <DependentUpon>Maintenance.xaml</DependentUpon>
     </Compile>
     <Compile Include="Areas\Vehicles\VehiclesAreaRegistry.cs" />
+    <Compile Include="Converters\FormattingConverter.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\DataList`1.cs" />
     <Compile Include="IAreaRegistry.cs" />
