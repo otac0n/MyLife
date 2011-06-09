@@ -16,14 +16,14 @@
 
     public partial class FuelEntryEditor : PhoneApplicationPage
     {
-        private Database.FuelEntry entry = new Database.FuelEntry();
+        private FuelEntryViewModel entry = new FuelEntryViewModel();
 
         public FuelEntryEditor()
         {
             InitializeComponent();
         }
 
-        public Database.FuelEntry Entry
+        public FuelEntryViewModel Entry
         {
             get
             {
@@ -43,7 +43,46 @@
 
         private void Save_Click(object sender, EventArgs e)
         {
+            NavigationService.GoBack();
+        }
 
+        public class FuelEntryViewModel : DependencyObject
+        {
+            public static readonly DependencyProperty DateProperty =
+                DependencyProperty.Register("Date", typeof(DateTime), typeof(FuelEntryViewModel), new PropertyMetadata(null));
+
+            public static readonly DependencyProperty OdometerProperty =
+                DependencyProperty.Register("Odometer", typeof(decimal), typeof(FuelEntryViewModel), new PropertyMetadata(0M));
+
+            public static readonly DependencyProperty GallonsProperty =
+                DependencyProperty.Register("Gallons", typeof(decimal), typeof(FuelEntryViewModel), new PropertyMetadata(0M));
+
+            public static readonly DependencyProperty CostProperty =
+                DependencyProperty.Register("Cost", typeof(decimal), typeof(FuelEntryViewModel), new PropertyMetadata(0M));
+
+            public DateTime Date
+            {
+                get { return (DateTime)GetValue(DateProperty); }
+                set { SetValue(DateProperty, value); }
+            }
+
+            public decimal Odometer
+            {
+                get { return (decimal)GetValue(OdometerProperty); }
+                set { SetValue(OdometerProperty, value); }
+            }
+
+            public decimal Gallons
+            {
+                get { return (decimal)GetValue(GallonsProperty); }
+                set { SetValue(GallonsProperty, value); }
+            }
+
+            public decimal Cost
+            {
+                get { return (decimal)GetValue(CostProperty); }
+                set { SetValue(CostProperty, value); }
+            }
         }
     }
 }
