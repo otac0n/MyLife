@@ -9,8 +9,8 @@ namespace MyLife
     using System.IO;
     using System.IO.IsolatedStorage;
     using System.Runtime.Serialization;
-using System.Collections.Generic;
-using System.Collections.Specialized;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Collections;
 
     public partial class Database
