@@ -34,7 +34,7 @@
                     <ItemsControl ItemsSource="{Binding FuelEntries}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid>
+                                <Grid Tag="{Binding}" ManipulationStarted="Grid_ManipulationStarted" ManipulationCompleted="Grid_ManipulationCompleted">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="100" />
                                         <ColumnDefinition Width="100" />

@@ -18,12 +18,20 @@ namespace MyLife.Areas.Vehicles
     using System.Windows.Shapes;
     using Microsoft.Phone.Controls;
     using MyLife.Data;
+    using System.Windows.Threading;
 
     public partial class Fuel : PhoneApplicationPage
     {
+        DispatcherTimer holdTimer;
+        Action holdAction;
+
         public Fuel()
         {
             InitializeComponent();
+
+            holdTimer = new DispatcherTimer();
+            holdTimer.Interval = TimeSpan.FromSeconds(2);
+            holdTimer.Tick += new EventHandler(HoldTimer_Tick);
         }
 
         public Database Database
@@ -34,6 +42,34 @@ namespace MyLife.Areas.Vehicles
         private void AddEntryButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/Areas/Vehicles/FuelEntryEditor.xaml", UriKind.Relative));
+        }
+
+        private void Grid_ManipulationStarted(object sender, ManipulationStartedEventArgs e)
+        {
+            this.holdTimer.Start();
+            this.holdAction = () => Grid_LongHold(sender, e);
+        }
+
+        private void Grid_ManipulationCompleted(object sender, ManipulationCompletedEventArgs e)
+        {
+            this.holdTimer.Stop();
+        }
+
+        void HoldTimer_Tick(object sender, EventArgs e)
+        {
+            this.holdTimer.Stop();
+            var h = this.holdAction;
+            if (h != null)
+            {
+                h();
+            }
+        }
+
+        private void Grid_LongHold(object sender, ManipulationStartedEventArgs e)
+        {
+            var entry = ((FrameworkElement)sender).Tag as Database.FuelEntry;
+            var index = this.Database.FuelEntries.IndexOf(entry);
+            NavigationService.Navigate(new Uri("/Areas/Vehicles/FuelEntryEditor.xaml?itemIndex=" + index, UriKind.Relative));
         }
     }
 }
